@@ -1,0 +1,27 @@
+import React, { useState } from 'react';
+import UploadForm from './components/UploadForm';
+import Gallery from './components/Gallery';
+import LanguageSelector from './components/LanguageSelector';
+import './i18n';
+import { useTranslation } from 'react-i18next';
+
+function App() {
+  const [category, setCategory] = useState("feil");
+  const { t } = useTranslation();
+
+  return (
+    <div style={{ maxWidth: 800, margin: "0 auto", padding: 16 }}>
+      <h1>{t("title")}</h1>
+      <LanguageSelector />
+      <nav style={{ marginBottom: 24 }}>
+        <button onClick={() => setCategory("feil")}>{t("feil")}</button>
+        <button onClick={() => setCategory("korrekt")}>{t("korrekt")}</button>
+      </nav>
+      <UploadForm category={category} />
+      <hr style={{ margin: "32px 0" }} />
+      <Gallery category={category} />
+    </div>
+  );
+}
+
+export default App;
